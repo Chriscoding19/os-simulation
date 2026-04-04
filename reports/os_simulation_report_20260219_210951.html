@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>OS Simulation Report</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Segoe UI', system-ui, sans-serif; background: #0d1117; color: #c9d1d9; line-height: 1.6; }
+  .container { max-width: 1300px; margin: 0 auto; padding: 2rem; }
+  h1 { color: #58a6ff; font-size: 2rem; margin-bottom: 0.3rem; }
+  h2 { color: #79c0ff; font-size: 1.2rem; margin: 2rem 0 1rem; border-bottom: 1px solid #30363d; padding-bottom: 0.5rem; }
+  h3 { color: #79c0ff; font-size: 1rem; margin: 1.2rem 0 0.5rem; }
+  .meta { color: #8b949e; margin-bottom: 2rem; font-size: 0.9rem; }
+  .summary-grid { display: grid; grid-template-columns: repeat(auto-fit,minmax(140px,1fr)); gap: 1rem; margin-bottom: 2rem; }
+  .summary-card { background: #161b22; border: 1px solid #30363d; border-radius: 8px; padding: 1.2rem; text-align: center; }
+  .summary-card .number { font-size: 1.8rem; font-weight: bold; }
+  .summary-card .label  { font-size: 0.75rem; color: #8b949e; text-transform: uppercase; }
+  table { width: 100%; border-collapse: collapse; background: #161b22; border-radius: 8px; overflow: hidden; border: 1px solid #30363d; margin-bottom: 1.5rem; font-size: 0.85rem; }
+  th { background: #21262d; color: #8b949e; text-align: left; padding: 0.6rem 0.8rem; font-size: 0.75rem; text-transform: uppercase; }
+  td { padding: 0.6rem 0.8rem; border-top: 1px solid #21262d; }
+  tr:hover td { background: #1c2128; }
+  .gantt-container { overflow-x: auto; margin-bottom: 1.5rem; }
+  .gantt { display: flex; height: 36px; align-items: center; min-width: 600px; border-radius: 4px; overflow: hidden; }
+  .gantt-block { display: flex; align-items: center; justify-content: center; font-size: 0.7rem; font-weight: bold; color: #fff; border-right: 1px solid rgba(0,0,0,0.3); white-space: nowrap; overflow: hidden; padding: 0 4px; }
+  .log-box { background: #161b22; border: 1px solid #30363d; border-radius: 6px; padding: 1rem; font-family: monospace; font-size: 0.8rem; max-height: 250px; overflow-y: auto; margin-bottom: 1rem; }
+  .log-line { padding: 0.15rem 0; border-bottom: 1px solid #21262d; color: #a8d8a8; }
+  .badge { display:inline-block; padding:0.2rem 0.5rem; border-radius:4px; font-size:0.75rem; font-weight:bold; }
+  .badge-green { background:#0d2a14; color:#3fb950; }
+  .badge-red   { background:#2a0d0d; color:#f85149; }
+  .card { background: #161b22; border: 1px solid #30363d; border-radius: 8px; padding: 1.5rem; margin-bottom: 1.5rem; }
+</style>
+</head>
+<body>
+<div class="container">
+  <h1>⚙️ Operating Systems Simulation</h1>
+  <div class="meta">Generated: 2026-02-19 21:09:51 &nbsp;|&nbsp; CPU Scheduling · Synchronization · Memory Management</div>
+
+  <div class="summary-grid">
+    <div class="summary-card"><div class="number" style="color:#58a6ff">6</div><div class="label">Schedulers</div></div>
+    <div class="summary-card"><div class="number" style="color:#3fb950">26.62</div><div class="label">Best Avg Wait (ms)</div></div>
+    <div class="summary-card"><div class="number" style="color:#d29922">6</div><div class="label">Page Algorithms</div></div>
+    <div class="summary-card"><div class="number" style="color:#bc8cff">Yes</div><div class="label">Deadlock Found</div></div>
+  </div>
+
+  <h2>CPU Scheduling Algorithm Comparison</h2>
+  <table>
+    <thead><tr>
+      <th>Algorithm</th><th>Type</th><th>Avg Wait</th><th>Avg Turnaround</th>
+      <th>Avg Response</th><th>Context Switches</th><th>CPU Util</th><th>Makespan</th>
+    </tr></thead>
+    <tbody>
+        <tr>
+            <td><strong>FCFS (First Come First Served)</strong></td>
+            <td>✗ Non-preemptive</td>
+            <td>43.38</td>
+            <td>56.88</td>
+            <td>43.38</td>
+            <td>0</td>
+            <td>100.0%</td>
+            <td>108ms</td>
+        </tr>
+        <tr>
+            <td><strong>SJF (Shortest Job First)</strong></td>
+            <td>✗ Non-preemptive</td>
+            <td>26.62</td>
+            <td>40.12</td>
+            <td>26.62</td>
+            <td>0</td>
+            <td>100.0%</td>
+            <td>108ms</td>
+        </tr>
+        <tr>
+            <td><strong>SRTF (Shortest Remaining Time First)</strong></td>
+            <td>✓ Preemptive</td>
+            <td>26.62</td>
+            <td>40.12</td>
+            <td>26.62</td>
+            <td>0</td>
+            <td>100.0%</td>
+            <td>108ms</td>
+        </tr>
+        <tr>
+            <td><strong>Priority Scheduling (Preemptive)</strong></td>
+            <td>✓ Preemptive</td>
+            <td>43.38</td>
+            <td>56.88</td>
+            <td>43.38</td>
+            <td>0</td>
+            <td>100.0%</td>
+            <td>108ms</td>
+        </tr>
+        <tr>
+            <td><strong>Round Robin (quantum=4ms)</strong></td>
+            <td>✓ Preemptive</td>
+            <td>52.88</td>
+            <td>66.38</td>
+            <td>10.62</td>
+            <td>21</td>
+            <td>100.0%</td>
+            <td>108ms</td>
+        </tr>
+        <tr>
+            <td><strong>MLFQ (Multi-Level Feedback Queue)</strong></td>
+            <td>✓ Preemptive</td>
+            <td>51.62</td>
+            <td>65.12</td>
+            <td>10.12</td>
+            <td>13</td>
+            <td>100.0%</td>
+            <td>108ms</td>
+        </tr></tbody>
+  </table>
+
+  <h2>Gantt Chart — Best Scheduler: SJF (Shortest Job First)</h2>
+  <div class="gantt-container">
+    <div class="gantt"><div class="gantt-block" style="width:3.7%;background:#388bfd;min-width:4px" title="SystemInit (0-4ms)">SystemIn</div><div class="gantt-block" style="width:9.3%;background:#f85149;min-width:4px" title="UserProcess_A (4-14ms)">UserProc</div><div class="gantt-block" style="width:5.6%;background:#56d364;min-width:4px" title="IdleTask (14-20ms)">IdleTask</div><div class="gantt-block" style="width:7.4%;background:#79c0ff;min-width:4px" title="LogCollector (20-28ms)">LogColle</div><div class="gantt-block" style="width:13.0%;background:#bc8cff;min-width:4px" title="UserProcess_B (28-42ms)">UserProc</div><div class="gantt-block" style="width:14.8%;background:#d29922;min-width:4px" title="DatabaseQuery (42-58ms)">Database</div><div class="gantt-block" style="width:18.5%;background:#3fb950;min-width:4px" title="WebServer (58-78ms)">WebServe</div><div class="gantt-block" style="width:27.8%;background:#58a6ff;min-width:4px" title="BackgroundSync (78-108ms)">Backgrou</div></div>
+    <div style="margin-top:0.5rem;font-size:0.75rem;color:#8b949e">0ms → 108ms</div>
+    <div style="margin-top:0.5rem"><span style="background:#388bfd;padding:2px 8px;border-radius:3px;font-size:0.75rem;margin:2px;display:inline-block">P1</span> <span style="background:#3fb950;padding:2px 8px;border-radius:3px;font-size:0.75rem;margin:2px;display:inline-block">P2</span> <span style="background:#d29922;padding:2px 8px;border-radius:3px;font-size:0.75rem;margin:2px;display:inline-block">P3</span> <span style="background:#f85149;padding:2px 8px;border-radius:3px;font-size:0.75rem;margin:2px;display:inline-block">P4</span> <span style="background:#bc8cff;padding:2px 8px;border-radius:3px;font-size:0.75rem;margin:2px;display:inline-block">P5</span> <span style="background:#58a6ff;padding:2px 8px;border-radius:3px;font-size:0.75rem;margin:2px;display:inline-block">P6</span> <span style="background:#79c0ff;padding:2px 8px;border-radius:3px;font-size:0.75rem;margin:2px;display:inline-block">P7</span> <span style="background:#56d364;padding:2px 8px;border-radius:3px;font-size:0.75rem;margin:2px;display:inline-block">P8</span></div>
+    </div>
+
+  <h3>Per-Process Metrics (SJF (Shortest Job First))</h3>
+  <table>
+    <thead><tr>
+      <th>PID</th><th>Name</th><th>Burst</th><th>Arrival</th><th>Priority</th>
+      <th>Start</th><th>Finish</th><th>Wait</th><th>Turnaround</th><th>Response</th>
+    </tr></thead>
+    <tbody>
+        <tr>
+            <td>P1</td>
+            <td>SystemInit</td>
+            <td>4ms</td>
+            <td>0ms</td>
+            <td>CRITICAL</td>
+            <td>0ms</td>
+            <td>4ms</td>
+            <td>0ms</td>
+            <td>4ms</td>
+            <td>0ms</td>
+        </tr>
+        <tr>
+            <td>P2</td>
+            <td>WebServer</td>
+            <td>20ms</td>
+            <td>1ms</td>
+            <td>HIGH</td>
+            <td>58ms</td>
+            <td>78ms</td>
+            <td>57ms</td>
+            <td>77ms</td>
+            <td>57ms</td>
+        </tr>
+        <tr>
+            <td>P3</td>
+            <td>DatabaseQuery</td>
+            <td>16ms</td>
+            <td>2ms</td>
+            <td>HIGH</td>
+            <td>42ms</td>
+            <td>58ms</td>
+            <td>40ms</td>
+            <td>56ms</td>
+            <td>40ms</td>
+        </tr>
+        <tr>
+            <td>P4</td>
+            <td>UserProcess_A</td>
+            <td>10ms</td>
+            <td>3ms</td>
+            <td>NORMAL</td>
+            <td>4ms</td>
+            <td>14ms</td>
+            <td>1ms</td>
+            <td>11ms</td>
+            <td>1ms</td>
+        </tr>
+        <tr>
+            <td>P5</td>
+            <td>UserProcess_B</td>
+            <td>14ms</td>
+            <td>4ms</td>
+            <td>NORMAL</td>
+            <td>28ms</td>
+            <td>42ms</td>
+            <td>24ms</td>
+            <td>38ms</td>
+            <td>24ms</td>
+        </tr>
+        <tr>
+            <td>P6</td>
+            <td>BackgroundSync</td>
+            <td>30ms</td>
+            <td>5ms</td>
+            <td>LOW</td>
+            <td>78ms</td>
+            <td>108ms</td>
+            <td>73ms</td>
+            <td>103ms</td>
+            <td>73ms</td>
+        </tr>
+        <tr>
+            <td>P7</td>
+            <td>LogCollector</td>
+            <td>8ms</td>
+            <td>6ms</td>
+            <td>LOW</td>
+            <td>20ms</td>
+            <td>28ms</td>
+            <td>14ms</td>
+            <td>22ms</td>
+            <td>14ms</td>
+        </tr>
+        <tr>
+            <td>P8</td>
+            <td>IdleTask</td>
+            <td>6ms</td>
+            <td>10ms</td>
+            <td>IDLE</td>
+            <td>14ms</td>
+            <td>20ms</td>
+            <td>4ms</td>
+            <td>10ms</td>
+            <td>4ms</td>
+        </tr></tbody>
+  </table>
+
+  <h2>Memory Management — Page Replacement Algorithms</h2>
+  <table>
+    <thead><tr><th>Algorithm</th><th>Frames</th><th>Page Faults</th><th>Page Hits</th><th>Fault Rate</th><th>Hit Rate</th></tr></thead>
+    <tbody>
+        <tr>
+            <td><strong>FIFO</strong></td>
+            <td>3</td>
+            <td>9</td>
+            <td>11</td>
+            <td>45.0%</td>
+            <td>55.0%</td>
+        </tr>
+        <tr>
+            <td><strong>LRU</strong></td>
+            <td>3</td>
+            <td>9</td>
+            <td>11</td>
+            <td>45.0%</td>
+            <td>55.0%</td>
+        </tr>
+        <tr>
+            <td><strong>Optimal (Belady's)</strong></td>
+            <td>3</td>
+            <td>7</td>
+            <td>13</td>
+            <td>35.0%</td>
+            <td>65.0%</td>
+        </tr>
+        <tr>
+            <td><strong>FIFO</strong></td>
+            <td>4</td>
+            <td>9</td>
+            <td>11</td>
+            <td>45.0%</td>
+            <td>55.0%</td>
+        </tr>
+        <tr>
+            <td><strong>LRU</strong></td>
+            <td>4</td>
+            <td>9</td>
+            <td>11</td>
+            <td>45.0%</td>
+            <td>55.0%</td>
+        </tr>
+        <tr>
+            <td><strong>Optimal (Belady's)</strong></td>
+            <td>4</td>
+            <td>7</td>
+            <td>13</td>
+            <td>35.0%</td>
+            <td>65.0%</td>
+        </tr></tbody>
+  </table>
+
+  <h2>Synchronization Primitives</h2>
+
+  <div class="card">
+    <h3>Producer-Consumer (Bounded Buffer)</h3>
+    <p style="color:#8b949e;margin-bottom:0.8rem;font-size:0.85rem">
+      Semaphore-based synchronization. Buffer capacity: 3. 2 producers, 2 consumers, 8 items.
+    </p>
+    <div class="log-box"><div class='log-line'>[PRODUCE] Producer-2 → added 2 | buffer=[2]</div><div class='log-line'>[CONSUME] Consumer-2 ← got    2 | buffer=[]</div><div class='log-line'>[PRODUCE] Producer-1 → added 1 | buffer=[1]</div><div class='log-line'>[CONSUME] Consumer-1 ← got    1 | buffer=[]</div><div class='log-line'>[PRODUCE] Producer-2 → added 3 | buffer=[3]</div><div class='log-line'>[CONSUME] Consumer-2 ← got    3 | buffer=[]</div><div class='log-line'>[PRODUCE] Producer-1 → added 4 | buffer=[4]</div><div class='log-line'>[CONSUME] Consumer-2 ← got    4 | buffer=[]</div><div class='log-line'>[PRODUCE] Producer-2 → added 5 | buffer=[5]</div><div class='log-line'>[CONSUME] Consumer-2 ← got    5 | buffer=[]</div><div class='log-line'>[PRODUCE] Producer-1 → added 6 | buffer=[6]</div><div class='log-line'>[CONSUME] Consumer-1 ← got    6 | buffer=[]</div><div class='log-line'>[PRODUCE] Producer-2 → added 7 | buffer=[7]</div><div class='log-line'>[PRODUCE] Producer-1 → added 8 | buffer=[7, 8]</div><div class='log-line'>[CONSUME] Consumer-1 ← got    7 | buffer=[8]</div><div class='log-line'>[CONSUME] Consumer-2 ← got    8 | buffer=[]</div></div>
+  </div>
+
+  <div class="card">
+    <h3>Dining Philosophers (Asymmetric Solution)</h3>
+    <p style="color:#8b949e;margin-bottom:0.8rem;font-size:0.85rem">
+      5 philosophers, 5 forks. Deadlock prevented via asymmetric fork ordering.
+    </p>
+    <div class="log-box"><div class='log-line'>  Aristotle    is THINKING</div><div class='log-line'>  Plato        is THINKING</div><div class='log-line'>  Socrates     is THINKING</div><div class='log-line'>  Descartes    is THINKING</div><div class='log-line'>  Kant         is THINKING</div><div class='log-line'>  Aristotle    is HUNGRY — waiting for forks 0 and 1</div><div class='log-line'>  Aristotle    is EATING  (forks 0+1 held)</div><div class='log-line'>  Descartes    is HUNGRY — waiting for forks 4 and 3</div><div class='log-line'>  Descartes    is EATING  (forks 4+3 held)</div><div class='log-line'>  Plato        is HUNGRY — waiting for forks 2 and 1</div><div class='log-line'>  Socrates     is HUNGRY — waiting for forks 2 and 3</div><div class='log-line'>  Kant         is HUNGRY — waiting for forks 4 and 0</div><div class='log-line'>  Descartes    FINISHED  — forks 4+3 released</div><div class='log-line'>  Descartes    is THINKING</div><div class='log-line'>  Aristotle    FINISHED  — forks 0+1 released</div><div class='log-line'>  Aristotle    is THINKING</div><div class='log-line'>  Plato        is EATING  (forks 2+1 held)</div><div class='log-line'>  Kant         is EATING  (forks 4+0 held)</div><div class='log-line'>  Descartes    is HUNGRY — waiting for forks 4 and 3</div><div class='log-line'>  Kant         FINISHED  — forks 4+0 released</div></div>
+  </div>
+
+  <div class="card">
+    <h3>Deadlock Detection (Resource Allocation Graph)</h3>
+    <p style="color:#8b949e;margin-bottom:0.8rem;font-size:0.85rem">
+      DFS-based cycle detection on the resource allocation graph.
+    </p>
+    <p><strong>Status:</strong> 🔴 DEADLOCK DETECTED</p>
+    <p><strong>Cycle:</strong> <code style="color:#d29922">P1 → P1</code></p>
+    <br>
+    <p><strong>Assignments:</strong> {'R1': 'P1', 'R2': 'P2', 'R3': 'P3'}</p>
+    <p><strong>Waiting:</strong> {'P1': 'R2', 'P2': 'R3', 'P3': 'R1'}</p>
+  </div>
+</div>
+</body>
+</html>
