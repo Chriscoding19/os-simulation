@@ -1,10 +1,10 @@
-# ⚙️ Operating Systems Simulation
+# Operating Systems Simulation
 
 Simulates core OS concepts: CPU scheduling algorithms, synchronization primitives, deadlock detection, and memory management — all in pure Python with zero external dependencies.
 
 ---
 
-## 📐 Architecture
+## Architecture
 
 ```
 os-simulation/
@@ -22,12 +22,12 @@ os-simulation/
 ├── reports/
 │   └── report_generator.py              ← HTML report with Gantt chart
 └── tests/
-    └── test_os_simulation.py            ← 30 unit tests (all passing ✅)
+    └── test_os_simulation.py            ← 30 unit tests (all passing)
 ```
 
 ---
 
-## 🚀 Quick Start
+## Quick Start
 
 ```bash
 # No dependencies needed — pure Python stdlib!
@@ -42,7 +42,7 @@ explorer.exe reports/os_simulation_report_*.html
 
 ---
 
-## ⚙️ CPU Scheduling Algorithms (6)
+## CPU Scheduling Algorithms (6)
 
 | Algorithm | Type | Description |
 |---|---|---|
@@ -63,7 +63,7 @@ explorer.exe reports/os_simulation_report_*.html
 
 ---
 
-## 🔒 Synchronization Primitives
+## Synchronization Primitives
 
 ### Mutex
 - Mutual exclusion lock with holder tracking and history log
@@ -90,7 +90,7 @@ explorer.exe reports/os_simulation_report_*.html
 
 ---
 
-## 🧠 Memory Management — Page Replacement (3 Algorithms)
+## Memory Management — Page Replacement (3 Algorithms)
 
 | Algorithm | Description | Belady's Anomaly? |
 |---|---|---|
@@ -102,7 +102,7 @@ Simulated on a 20-reference string with locality of reference.
 
 ---
 
-## 🛠 Technologies
+## Technologies
 
 - **Language**: Python 3.8+ (zero external dependencies)
 - **Concurrency**: `threading` module for synchronization demos
