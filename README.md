@@ -1,6 +1,6 @@
 # Operating Systems Simulation
 
-Simulates core OS concepts: CPU scheduling algorithms, synchronization primitives, deadlock detection, and memory management — all in pure Python with zero external dependencies.
+Simulates core OS concepts: CPU scheduling algorithms, synchronization primitives, deadlock detection, and memory management - all in pure Python with zero external dependencies.
 
 ---
 
