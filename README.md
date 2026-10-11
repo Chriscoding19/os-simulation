@@ -30,7 +30,7 @@ os-simulation/
 ## Quick Start
 
 ```bash
-# No dependencies needed — pure Python stdlib!
+# No dependencies needed - pure Python stdlib!
 python3 main.py
 
 # Run unit tests
@@ -46,12 +46,12 @@ explorer.exe reports/os_simulation_report_*.html
 
 | Algorithm | Type | Description |
 |---|---|---|
-| **FCFS** | Non-preemptive | First Come First Served — simplest, convoy effect risk |
-| **SJF** | Non-preemptive | Shortest Job First — optimal avg wait (non-preemptive) |
-| **SRTF** | Preemptive | Shortest Remaining Time — optimal avg wait overall |
+| **FCFS** | Non-preemptive | First Come First Served - simplest, convoy effect risk |
+| **SJF** | Non-preemptive | Shortest Job First - optimal avg wait (non-preemptive) |
+| **SRTF** | Preemptive | Shortest Remaining Time - optimal avg wait overall |
 | **Priority** | Preemptive | Priority-based with aging (prevents starvation) |
-| **Round Robin** | Preemptive | Time-sliced, quantum=4ms — fair, high context switching |
-| **MLFQ** | Preemptive | Multi-Level Feedback Queue — approximates SJF without prior knowledge |
+| **Round Robin** | Preemptive | Time-sliced, quantum=4ms - fair, high context switching |
+| **MLFQ** | Preemptive | Multi-Level Feedback Queue - approximates SJF without prior knowledge |
 
 ### Metrics Computed Per Scheduler
 - Average waiting time
@@ -69,7 +69,7 @@ explorer.exe reports/os_simulation_report_*.html
 - Mutual exclusion lock with holder tracking and history log
 
 ### Semaphore
-- Counting semaphore — P() wait / V() signal operations
+- Counting semaphore - P() wait / V() signal operations
 
 ### Read-Write Lock
 - Multiple concurrent readers OR single exclusive writer
@@ -81,7 +81,7 @@ explorer.exe reports/os_simulation_report_*.html
 ### Dining Philosophers
 - 5 philosophers, 5 forks
 - **Asymmetric solution**: even philosophers take left→right, odd take right→left
-- Breaks circular wait condition — guaranteed deadlock-free
+- Breaks circular wait condition - guaranteed deadlock-free
 
 ### Deadlock Detection
 - Resource Allocation Graph (RAG)
