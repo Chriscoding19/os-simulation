@@ -90,7 +90,7 @@ explorer.exe reports/os_simulation_report_*.html
 
 ---
 
-## Memory Management — Page Replacement (3 Algorithms)
+## Memory Management - Page Replacement (3 Algorithms)
 
 | Algorithm | Description | Belady's Anomaly? |
 |---|---|---|
