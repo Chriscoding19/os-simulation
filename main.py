@@ -41,7 +41,7 @@ def parse_args():
 
 def print_header():
     print("\n" + "═"*65)
-    print("   ⚙️  OPERATING SYSTEMS SIMULATION")
+    print("   OPERATING SYSTEMS SIMULATION")
     print("   Scheduling · Synchronization · Memory Management")
     print("═"*65)
 
@@ -93,7 +93,7 @@ def main():
               f"  {result['cpu_utilisation']:>8.1f}%")
 
     best = min(scheduler_results, key=lambda r: r["avg_waiting"])
-    print(f"\n  🏆  Best avg wait: {best['scheduler']} ({best['avg_waiting']}ms)")
+    print(f"\n  Best avg wait: {best['scheduler']} ({best['avg_waiting']}ms)")
 
     # Per-process breakdown for best scheduler
     print(f"\n  Per-process metrics — {best['scheduler']}:")
@@ -147,7 +147,7 @@ def main():
     report_a = d.state_report()
     print(f"  Assignments : {report_a['assignments']}")
     print(f"  Waiting     : {report_a['waiting']}")
-    print(f"  Deadlock    : {'🔴 YES — ' + str(report_a['cycle']) if report_a['has_deadlock'] else '🟢 No'}")
+    print(f"  Deadlock    : {'YES — ' + str(report_a['cycle']) if report_a['has_deadlock'] else 'No'}")
 
     # Scenario B: Deadlock
     print("\n  Scenario B: Deadlock (circular wait)")
@@ -159,7 +159,7 @@ def main():
     report_b = d2.state_report()
     print(f"  Assignments : {report_b['assignments']}")
     print(f"  Waiting     : {report_b['waiting']}")
-    print(f"  Deadlock    : {'🔴 YES — Cycle: ' + ' → '.join(report_b['cycle']) if report_b['has_deadlock'] else '🟢 No'}")
+    print(f"  Deadlock    : {'YES — Cycle: ' + ' → '.join(report_b['cycle']) if report_b['has_deadlock'] else 'No'}")
 
     # ── Step 4: Memory Management ──────────────────────────────────
     section("STEP 4/4 — Memory Management (Page Replacement)")
@@ -193,12 +193,12 @@ def main():
         html_path = generate_html_report(
             scheduler_results, sync_results, all_mem_results
         )
-        print(f"\n  📊 Report saved: {html_path}")
+        print(f"\n Report saved: {html_path}")
         print(f"     explorer.exe {html_path}")
 
     elapsed = time.time() - start
     print(f"\n{'═'*65}")
-    print(f"  ✅  Complete! Total time: {elapsed:.1f}s")
+    print(f"  Complete! Total time: {elapsed:.1f}s")
     print(f"{'═'*65}\n")
 
 
