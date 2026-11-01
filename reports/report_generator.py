@@ -73,7 +73,7 @@ def generate_html_report(scheduler_results: list, sync_results: dict,
         phil_log += f"<div class='log-line'>{line}</div>"
 
     deadlock = sync_results.get("deadlock_report", {})
-    dl_status = "🔴 DEADLOCK DETECTED" if deadlock.get("has_deadlock") else "🟢 No Deadlock"
+    dl_status = "DEADLOCK DETECTED" if deadlock.get("has_deadlock") else "No Deadlock"
     dl_cycle  = " → ".join(deadlock.get("cycle", [])) if deadlock.get("has_deadlock") else "None"
 
     html = f"""<!DOCTYPE html>
@@ -110,7 +110,7 @@ def generate_html_report(scheduler_results: list, sync_results: dict,
 </head>
 <body>
 <div class="container">
-  <h1>⚙️ Operating Systems Simulation</h1>
+  <h1>Operating Systems Simulation</h1>
   <div class="meta">Generated: {datetime.now().strftime("%Y-%m-%d %H:%M:%S")} &nbsp;|&nbsp; CPU Scheduling · Synchronization · Memory Management</div>
 
   <div class="summary-grid">
